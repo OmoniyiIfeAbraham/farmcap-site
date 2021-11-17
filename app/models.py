@@ -13,7 +13,7 @@ class Membership(models.Model):
     choices=MEMBERSHIP_CHOICES, default='Free',
     max_length=30
       )
-    price = models.DecimalField(default=0, max_digits=9999999999999, decimal_places=90000)
+    price = models.DecimalField(default=0, max_digits=9000, decimal_places=2)
 def __str__(self):
        return self.membership_type
 
