@@ -14,8 +14,8 @@ class Membership(models.Model):
     max_length=30
       )
     price = models.DecimalField(default=0, max_digits=9000, decimal_places=2)
-def __str__(self):
-       return self.membership_type
+    def __str__(self):
+      return self.membership_type
 
 
 class UserMembership(models.Model):
