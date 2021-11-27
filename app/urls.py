@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name="index"),
+    path('zbout/', views.about, name="about"),
     path('memberships/', views.MembershipView.as_view(), name='select'),
 ]

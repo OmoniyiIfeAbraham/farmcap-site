@@ -6,6 +6,10 @@ def index(request):
     return render(request, 'index.html')  
 
 
+def about(request):
+    return render(request, 'about.html')  
+
+
 
 from django.views.generic import ListView
 from .models import Membership, UserMembership, Subscription

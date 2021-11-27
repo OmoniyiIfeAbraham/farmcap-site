@@ -1,57 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>FarmCap</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-	<link href="about.css" rel="stylesheet">
-</head>
-<body>
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-md navbar-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="home.html"><img src="logo.png"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="search-wrapper">
-            <span class="las la-search"></span>
-            <input type="search" placeholder="Seacrh here">
-        </div>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="about.html">About us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="signin.html">Sign in</a>
-                </li>
-            </ul>
+
+<div class="carousel-inner">
+    <div class="carousel-item active">
+        <img src="{% static 'slidebg.jpg' %}" width="100%" height="1300">
+        <div class="carousel-caption">
+            <h1 class="display-2">FarmCap</h1>
+            <h3>Enriching your store house</h3>
+            {% if user.is_authenticated %}
+            <h1 class="display-2">FarmCap</h1>
+            {{user.username}}
+            <a class="dropdown-item" href="{% url 'logout' %}">LogOut</a>
+            <div class="dropdown-divider"></div>
+            {% else %}
+            <form>
+                <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-light btn-lg">SIGN IN</button></a>
+                <a href="{% url 'signup' %}"><button type="button" class="btn btn-primary btn-lg">REGISTER</button></a> {% endif %}
+            </form>
         </div>
     </div>
-    </nav>
-    
+    <div class="carousel-item">
+        <img src="{% static 'background2.jpg' %}" width="100%" height="1300">
+        <div class="carousel-caption">
+            <h1>Register your farm today</h1>
+        </div>
+    </div>
+    <div class="carousel-item">
+        <img src="{% static 'background3.jpg' %}" width="100%" height="1300">
+        <div class="carousel-caption">
+            <h1>Invest in a farm near you</h1>
+        </div>
+    </div>
+</div>
+
 
 <!--- Image Slider -->
-<div class="carousel-inner">
-    <img src="slidebg.jpg" width="100%" height="1300">
+<!-- <div class="carousel-inner">
+    <img src="{% static 'slidebg.jpg' %}" width="100%" height="1300">
     <div class="carousel-caption">
         <h1 class="display-2">FarmCap</h1>
         <h3>Grow your wealth with passive investments in farming and agrobusiness</h3>
         <a href="signup.html"><button type="button" class="btn btn-primary btn-lg">SIGN UP TO INVEST TODAY</button></a>
-    </div>    
-</div>
-   
-    
+    </div>
+</div> -->
+
+
 <!--- Jumbotron -->
 
 
@@ -62,33 +55,35 @@
             <h1 class="display-4"> Why FarmCap? </h1>
             <hr>
         </div>
-        
+
         <div class="col-sm-12">
-            <p class="lead">Agriculture is a necessity globally and it goes without saying that a country cannot survive without farm yields and agriculture in general. 
-                <br> Unfortunately not enough concern is given to small and average scale farmers, this has led to continuous increase in market price of farm products.
-                 I.e. if a farm cannot continue to function and produce for long term, they will eventually shutdown and this will cut down the supply of food to the product market, thereby leading to scarcity of food in homes. Also the lesser the supply, the higher the demand, hence the increase in price of commodity. 
-                 <br> FarmCap is here to help everyday citizens and farmers by bridging the 2 sides to solve the problem of lack of proper funding for farmers and the scarcity of food, where farmers get investments from investors(everday citizens) and investors get fresh farm products directly from the source at a lower price.
+            <p class="lead">Agriculture is a necessity globally and it goes without saying that a country cannot survive without farm yields and agriculture in general.
+                <br> Unfortunately not enough concern is given to small and average scale farmers, this has led to continuous increase in market price of farm products. I.e. if a farm cannot continue to function and produce for long term, they will eventually
+                shutdown and this will cut down the supply of food to the product market, thereby leading to scarcity of food in homes. Also the lesser the supply, the higher the demand, hence the increase in price of commodity.
+                <br> FarmCap is here to help everyday citizens and farmers by bridging the 2 sides to solve the problem of lack of proper funding for farmers and the scarcity of food, where farmers get investments from investors(everday citizens) and
+                investors get fresh farm products directly from the source at a lower price.
             </p>
         </div>
     </div>
-    </div>
+</div>
 
 <div class="container-fluid padding">
-        <div class="row welcome text-center">
-            <div class="col-12">
-                <h1 class="display-4"> HOW IT WORKS </h1>
-                <hr>
-            </div>
-            
-            <div class="col-sm-12">
-                <p class="lead"> FarmCap is a system that connects investors(everyday citizens) to farms nationwide, helping both farmers and investors make profit on the capital. Each investor is paid back its initial capital with interest at end of investment due date (interest rate is set by farms). 
-                  <br>  Uniquely the investor’s interest will not be paid back in cash, instead the equivalence of the interest in form of agricultural product the farm produces will be given to the investor.
-                     i.e. If an investment of N500,000 is made to a rice farm and at the end of the investment period, an interest of 30% (N150,000) is earned, the farm will remit back to the investor its initial capital of N500,000 plus N150,000 worth of rice at market value. 
-                     </p>
-            </div>
+    <div class="row welcome text-center">
+        <div class="col-12">
+            <h1 class="display-4"> HOW IT WORKS </h1>
+            <hr>
+        </div>
+
+        <div class="col-sm-12">
+            <p class="lead"> FarmCap is a system that connects investors(everyday citizens) to farms nationwide, helping both farmers and investors make profit on the capital. Each investor is paid back its initial capital with interest at end of investment due date (interest
+                rate is set by farms).
+                <br> Uniquely the investor’s interest will not be paid back in cash, instead the equivalence of the interest in form of agricultural product the farm produces will be given to the investor. i.e. If an investment of N500,000 is made to
+                a rice farm and at the end of the investment period, an interest of 30% (N150,000) is earned, the farm will remit back to the investor its initial capital of N500,000 plus N150,000 worth of rice at market value.
+            </p>
+        </div>
     </div>
-    </div>
-    
+</div>
+
 
 <!--- Three Column Section -->
 
@@ -101,7 +96,7 @@
 
 <!--- Emoji Section -->
 
-  
+
 <!--- Meet the team -->
 <div class="container-fluid">
     <div class="row welcome text-center">
@@ -109,16 +104,16 @@
             <h1 class="display-4-fay"> CONNECT WITH FARMS NEAR YOU</h1>
             <hr class="light">
         </div>
-            
-    </div>	
+
     </div>
-    
-    <!--- Cards -->
-    <div class="container-fluid padding">
+</div>
+
+<!--- Cards -->
+<div class="container-fluid padding">
     <div class="row padding">
         <div class="col-md-4">
             <div class="card">
-                <img class="card-img-top" src="farm1.jpg" height="400px">
+                <img class="card-img-top" src="{% static 'farm1.jpg' %}" height="400px">
                 <div class="card-body">
                     <h4 class="card-title">Tripple zero Farm</h4>
                     <p class="card-text"> Tripple zero is a poultry farm located in Nassarawa Abuja, visit our profile for more information </p>
@@ -126,10 +121,10 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="col-md-4">
             <div class="card">
-                <img class="card-img-top" src="farm2.jpg" height="400px">
+                <img class="card-img-top" src="{% static 'farm2.jpg' %}" height="400px">
                 <div class="card-body">
                     <h4 class="card-title">Tukur&Tukur Farm</h4>
                     <p class="card-text"> Tukur&Tukur farm ltd is a poultry farm located in Nassarawa Abuja, visit our profile for more information </p>
@@ -137,10 +132,10 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="col-md-4">
             <div class="card">
-                <img class="card-img-top" src="farm3.jpg" height="400px">
+                <img class="card-img-top" src="{% static 'farm3.jpg' %}" height="400px">
                 <div class="card-body">
                     <h4 class="card-title">Emilio Farm</h4>
                     <p class="card-text"> Emilio farm is a poultry farm located in Nassarawa Abuja, visit our profile for more information </p>
@@ -148,9 +143,9 @@
                 </div>
             </div>
         </div>
-    
+
     </div>
-    </div>
+</div>
 
 <!--- Cards -->
 
@@ -172,48 +167,5 @@
             <a href="faceebook.com"><i class="fab fa-youtube"></i></a>
         </div>
     </div>
-    </div>
-
-<!--- Footer -->
-<footer>
-    <div class="container-fluid padding">
-    <div class="row text-center">
-        <div class="col-md-4">
-            <img src="logo3.png">
-            <hr class="light">
-            <p>+234 903 5512 303</p>
-            <p>farmcap@gmail.com</p>
-            <p> farm cap online</p>
-        </div>
-    
-        <div class="col-md-4">
-            <hr class="light">
-            <h5>Our Hours</h5>
-            <hr class="light">
-            <p>Weekdays: 9am-5pm</p>
-            <p>Saturday: 11am-5pm</p>
-            <p> Sunday: closed</p>
-        </div>
-    
-        <div class="col-md-4">
-            <br> 
-            <hr class="light">
-            <h5>Service Area</h5>
-            <hr class="light">
-            <p>City, State, 00000</p>
-            <p>City, State, 00000</p>
-            <p>City, State, 00000</p>
-        </div>
-        <div class="col-12">
-            <hr class="light-100">
-            <h5>&copy; kamitech2021</h5>
-        </div>
-    
-    </div>
-    </div>
-    </footer>
-
-
-
-</body>
-</html>
+</div>
+{% endblock %}
